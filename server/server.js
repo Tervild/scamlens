@@ -89,6 +89,54 @@ ${req.body.text.slice(0, 1000)}
 	}
 })
 
+app.post('/analyze-qr', async (req, res) => {
+console.log('QR endpoint called:', req.body.url)
+
+	const url = req.body.url
+
+	let score = 10
+	let risk = 'LOW'
+	const reasons = []
+
+	if (!url.startsWith('https://')) {
+		score += 25
+		reasons.push('The link does not use HTTPS.')
+	}
+
+	if (
+		url.includes('bit.ly') ||
+		url.includes('tinyurl') ||
+		url.includes('t.co')
+	) {
+		score += 30
+		reasons.push('The QR code uses a shortened link.')
+	}
+
+	if (
+		url.includes('login') ||
+		url.includes('verify') ||
+		url.includes('account')
+	) {
+		score += 30
+		reasons.push('The link contains suspicious authentication words.')
+	}
+
+	if (score >= 75) risk = 'HIGH'
+	else if (score >= 40) risk = 'MEDIUM'
+
+	res.send({
+		risk,
+		score,
+		url,
+		reason:
+			reasons.length > 0
+				? reasons.join(' ')
+				: 'This QR link does not show obvious phishing indicators.',
+	})
+})
+
 app.listen(3000, () => {
 	console.log('ScamLens server running')
 })
+
+

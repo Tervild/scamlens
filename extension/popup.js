@@ -91,3 +91,27 @@ input.addEventListener('keydown', event => {
 })
 
 loadSites()
+
+const scanQrBtn = document.getElementById('scanQr')
+
+console.log('QR button:', scanQrBtn)
+
+scanQrBtn.addEventListener('click', async () => {
+	console.log('QR button clicked')
+
+	const [tab] = await chrome.tabs.query({
+		active: true,
+		currentWindow: true,
+	})
+
+	console.log('Current tab:', tab)
+
+	chrome.tabs.sendMessage(tab.id, { action: 'SCAN_QR_CODES' }, response => {
+		if (chrome.runtime.lastError) {
+			console.error('Message error:', chrome.runtime.lastError.message)
+			return
+		}
+
+		console.log('Content response:', response)
+	})
+})
