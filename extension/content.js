@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
 
 function analyzePage() {
 	setTimeout(() => {
-		const pageText = document.body.innerText.trim().slice(0, 1000)
+		const pageText = document.body.innerText.trim().slice(0, 5000)
 
 		console.log('ScamLens text length:', pageText.length)
 

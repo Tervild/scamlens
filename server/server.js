@@ -41,7 +41,7 @@ Return ONLY JSON:
 }
 
 Text:
-${req.body.text.slice(0, 1000)}
+${req.body.text.slice(0, 5000)}
 `
 
 		const completion = await groq.chat.completions.create({
