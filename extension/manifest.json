@@ -2,8 +2,11 @@
 	"manifest_version": 3,
 	"name": "ScamLens",
 	"version": "1.0",
-	"permissions": ["activeTab"],
-	"host_permissions": ["http://127.0.0.1:3000/*", "http://localhost:3000/*"],
+	"permissions": ["activeTab", "storage"],
+	"host_permissions": ["<all_urls>"],
+	"action": {
+		"default_popup": "popup.html"
+	},
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],

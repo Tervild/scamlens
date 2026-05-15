@@ -1,28 +1,79 @@
 .scamlens-warning {
 	position: fixed;
-	top: 20px;
-	right: 20px;
-	width: 320px;
-	padding: 18px;
-	border-radius: 14px;
+	top: 24px;
+	right: 24px;
+	width: 360px;
+	padding: 22px;
+	border-radius: 22px;
 	color: white;
 	z-index: 999999;
-	font-family: Arial, sans-serif;
-	box-shadow: 0 8px 25px rgba(0,0,0,0.35);
-	transition: all 0.4s ease;
+	font-family: Inter, Arial, sans-serif;
+	box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+	backdrop-filter: blur(14px);
+	animation: scamlens-slide-in 0.35s ease;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.scamlens-warning h2 {
+	margin: 0 0 10px;
+	font-size: 22px;
+	font-weight: 800;
+	letter-spacing: 0.3px;
+}
+
+.scamlens-warning p {
+	margin: 8px 0;
+	font-size: 14px;
+	line-height: 1.45;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.scamlens-warning h4 {
+	margin: 16px 0 8px;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 0.8px;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.scamlens-warning ul {
+	margin: 0;
+	padding-left: 18px;
+}
+
+.scamlens-warning li {
+	margin-bottom: 6px;
+	font-size: 14px;
+	line-height: 1.35;
 }
 
 .scamlens-close {
 	position: absolute;
-	top: 10px;
-	right: 12px;
-	background: transparent;
+	top: 14px;
+	right: 14px;
+	width: 30px;
+	height: 30px;
 	border: none;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.16);
 	color: white;
-	font-size: 18px;
+	font-size: 16px;
 	cursor: pointer;
+	transition: 0.2s ease;
 }
 
 .scamlens-close:hover {
-	transform: scale(1.2);
+	background: rgba(255, 255, 255, 0.28);
+	transform: scale(1.08);
+}
+
+@keyframes scamlens-slide-in {
+	from {
+		opacity: 0;
+		transform: translateX(40px) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
 }
